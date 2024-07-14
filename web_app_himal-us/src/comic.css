@@ -1,0 +1,411 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+:root {
+  --text: #fef9ec;
+  --background: #070303;
+  --primary: #da9d6d;
+  --secondary: #83a35a;
+  --accent: #505673;
+}
+
+body {
+  background-color: #343434;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+section {
+  text-align: center;
+}
+
+header {
+  padding: 10px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none; /* Optional: disable interactions on hidden elements */
+  transition: opacity 0.3s ease; /* Optional: add a transition effect */
+}
+
+#menuIcon {
+  cursor: pointer;
+  z-index: 3;
+  position: fixed;
+  right: 10vh;
+  top: 5vh;
+}
+
+.menu {
+  --s: 35px; /* control the size */
+  --c: var(--text); /* the color */
+  
+  height: var(--s);
+  aspect-ratio: 1;
+  border: none;
+  padding: 0;
+  border-inline: calc(var(--s)/2) solid #0000; 
+  box-sizing: content-box;
+  --_g1: linear-gradient(var(--c) 20%,#0000 0 80%,var(--c) 0) 
+         no-repeat content-box border-box;
+  --_g2: radial-gradient(circle closest-side at 50% 12.5%,var(--c) 95%,#0000) 
+         repeat-y content-box border-box;
+  background: 
+    var(--_g2) left  var(--_p,0px) top,
+    var(--_g1) left  calc(var(--s)/10 + var(--_p,0px)) top,
+    var(--_g2) right var(--_p,0px) top,
+    var(--_g1) right calc(var(--s)/10 + var(--_p,0px)) top;
+  background-size: 
+    20% 80%,
+    40% 100%;
+  position: relative;
+  clip-path: inset(0 25%);
+  -webkit-mask: linear-gradient(90deg,#0000,#000 25% 75%,#0000);
+  cursor: pointer;
+  transition: 
+    background-position .3s var(--_s,.3s), 
+    clip-path 0s var(--_s,.6s);
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  appearance:none;
+}
+.menu:before,
+.menu:after {
+  content:"";
+  position: absolute;
+  border-radius: var(--s);
+  inset: 40% 0;
+  background: var(--c);
+  transition: transform .3s calc(.3s - var(--_s,.3s));
+}
+
+.menu:checked {
+  clip-path: inset(0);
+  --_p: calc(-1*var(--s));
+  --_s: 0s;
+}
+.menu:checked:before {
+  transform: rotate(45deg);
+}
+.menu:checked:after {
+  transform: rotate(-45deg);
+}
+.menu:focus-visible {
+  clip-path: none;
+  -webkit-mask: none;
+  border: none;
+  outline: 2px solid var(--c);
+  outline-offset: 5px;
+}
+
+.menuBox {
+  width: 0;
+  height: 0;
+  background: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom-left-radius: 100%;
+  transition: width 0.5s, height 0.5s, border-radius 0.5s;
+  z-index: 2;
+}
+
+.menuBox.openMenu {
+  width: 100%;
+  height: 100vh;
+  border-bottom-left-radius: 0;
+}
+
+.menuBox.openMenu ul li {
+  opacity: 1;
+  transform: translateY(0);
+  transition: transform 1s, opacity 1s;
+  transition-delay: 0.5s;
+}
+
+.menuBox ul li {
+  list-style: none;
+  margin: 20px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.menuBox ul li a {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--text);
+  font-family: 'Roboto';
+  font-size: 50px;
+  font-weight: 600;
+  position: relative;
+  text-shadow: 0 0 0 var(--background);
+  transition: text-shadow 0.5s, transform 0.5s;
+}
+
+.menuBox ul li a:hover {
+  text-shadow: -3px 3px 0 var(--secondary);
+  transform: translateY(-6px);
+}
+
+.menuBox ul li a::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--text);
+  position: absolute;
+  bottom: 19px;
+  right: -18px;
+  opacity: 0;
+  box-shadow: 0 0 0 var(--background);
+  transition: box-shadow 0.5s;
+}
+.menuBox ul li a:hover::after {
+  opacity: 1;
+  box-shadow: -2px 2px 0 var(--secondary);
+}
+
+/* Updated CSS for the modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 4;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  text-align: center;
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #555;
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close:hover {
+  color: #333;
+}
+
+/* Added a fade-in effect for the modal */
+.modal-content {
+  animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Style the paragraph inside the modal */
+.modal-content p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+/* Style the modal title */
+.modal-content h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Style the close button */
+.close {
+  color: #888;
+  cursor: pointer;
+  font-size: 28px;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  transition: color 0.3s;
+}
+
+.close:hover {
+  color: #333;
+}
+
+#toggleSoundButton {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 10px;
+  background-color: transparent; /* Set the background to transparent */
+  color: var(--text);
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  transition: color 0.3s; /* Add a transition effect for color change */
+  z-index: 1;
+}
+
+#toggleSoundButton i {
+  font-size: 24px;
+  margin-right: 5px;
+  background-color: transparent; /* Set the background of the icon to transparent */
+}
+
+#toggleZoomButton {
+  position: fixed;
+  bottom: 20px;
+  left: 80px;
+  padding: 10px;
+  background-color: transparent; /* Set the background to transparent */
+  color: var(--text);
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  transition: color 0.3s; /* Add a transition effect for color change */
+  z-index: 1;
+}
+
+#toggleZoomButton:hover { 
+  font-size: 24px;
+  margin-right: 5px;
+  background-color: transparent; /* Set the background of the icon to transparent */
+}
+
+/* Updated CSS for the slider */
+#slider-container {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30%;
+  z-index: 1;
+}
+
+#slider {
+  width: 100%;
+  height: 10px; /* Adjust the height as needed */
+  -webkit-appearance: none;
+  appearance: none;
+  background: #555;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  border-radius: 5px;
+}
+
+#slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px; /* Adjust the height as needed */
+  background: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+  border: 2px solid #555;
+}
+
+#slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px; /* Adjust the height as needed */
+  background: #fff;
+  border: 2px solid #555;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+}
+
+#slider:hover::-webkit-slider-thumb,
+#slider:hover::-moz-range-thumb {
+  transform: scale(1.2);
+}
+
+
+/* Styling for the page indicator */
+#page-indicator {
+  position: fixed;
+  bottom: 40px; /* Adjust the position as needed */
+  left: 50%;
+  font-family: 'Poppins';
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 20px;
+  z-index: 1;
+}
+
+/* Animation*/
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@media
+(prefers-reduced-motion: no-preference) {
+html {
+  scroll-behavior: smooth;
+}
+}
+
+/*Media Queries*/
+@media (max-width: 768px) {
+  .menu {
+    --s: 30px
+  }
+  #menuIcon {
+    right: 10px;
+  }
+}
+@media (max-width: 376px) {
+  #toggleZoomButton {
+    left: 20px;
+    bottom: 70px
+  }
+
+}

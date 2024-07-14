@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="assets.css">
+        
+        <!--Font & Icons-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins&family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2f24afeea0.js" crossorigin="anonymous"></script>
+   
+    </head>
+    <body>
+
+        <main>
+
+        <!--Navbar-->
+
+        <input type="checkbox" role="button" class="menu" id="menuIcon">
+
+        <div class="menuBox" id="menuBox">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="comic.html">Comics</a></li>
+            <li><a href="assets.html">Assets</a></li>
+          </ul>
+        </div>
+
+		</header>
+
+		<div class="container">
+
+			<h1 class="title">Asset Gallery</h1>
+
+			<div class="photoGallery">
+
+				<div class="column">
+
+					<div class="photo">
+						<img src="assets/assets/Aras.png">
+						<img src="assets/assets/393893248_872656194412936_6500534959683718658_n.jpg">
+					</div>
+
+					<div class="photo">
+						<img src="assets/assets/Guima.png">
+						<img src="assets/assets/Resketch of Guima(Top Left), Aras(Top Right), and Hagonoy(Bottom)).png">
+					</div>
+				
+					<div class="photo">
+						<img src="assets/assets/Hagonoy.png">
+						<img src="assets/assets/IMG_0809.GIF">
+					</div>
+
+			</div>
+		</div>
+	</main>
+
+	</body>
+
+	<script>
+		
+		//menu script
+		let menuBox = document.getElementById("menuBox");
+          let menuIcon = document.getElementById("menuIcon");
+
+          menuIcon.onclick = function() {
+            menuBox.classList.toggle("openMenu");
+
+            if(menuBox.classList.contains("openMenu")) {
+              menuIcon.src = "assets/icons/close.png";
+            }
+            else menuIcon.src = "assets/icons/open.png";
+          }
+		  
+	  </script>
+	  
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css">
+
+    <title>Himal-us</title>
+
+    <!--Favicons-->
+    <link href="assets/icons/favicon.svg" rel="icon">
+
+    <!--Font & Icons-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Old+Uyghur&family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2f24afeea0.js" crossorigin="anonymous"></script>
+    <script defer src="app.js"></script>
+  
+  </head>
+
+  <body>
+
+    <header>
+
+        <input type="checkbox" role="button" class="menu" id="menuIcon">
+
+        <div class="menuBox" id="menuBox">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="comic.html">Comics</a></li>
+            <li><a href="assets.html">Assets</a></li>
+          </ul>
+        </div>
+
+    </header>
+
+    <main>
+
+      <body>
+
+        <div class="loader" id="loader"></div>
+
+        <img id="background-image" src="assets/intro.gif" alt="Intro GIF" onload="handleImageLoad()">
+
+        <button id="close-button" onclick="hideVideo()"><i class="fas fa-times-circle"></i></button>
+
+      <audio src="/assets/sounds/music.mp3" autoplay></audio>
+
+      <div class="content">
+      <section id="hero">
+
+        <div class="hero-container">
+          <div class="title hidden">
+            <img src="assets/title.webp" id="title">
+          </div>
+          <div class="tagline hidden">
+            <h1>The Legend of Guimaras</h1>
+          </div>
+          <div class="info hidden">
+            <h2>Embark on a visual adventure like no other!</h2>
+          </div>
+          <a href="comic.html"> <button class="hidden" id="read">Read Now</button> </a>
+        </div>
+
+      </section>
+
+      <section id="about">
+
+        <div class="about-container">
+          <div class="about-text hidden">
+            <h1>Foreword</h1>
+          </div>
+          <div class="about-info hidden">
+            <p>We are the 4th-year undergraduate researchers taking the course Bachelor of Science in Entertainment and Multimedia Computing at West Visayas State University LaPaz Iloilo. We present to you our capstone project, the Legend of Guimaras. A visually immersive comics to which you will discover the love story of Guima and Aras. Join us as in this story adaptation where tradition meets technology. Explore the comics, uncover the legend, and enjoy being a part of this immersive adventure!</p>
+          </div>
+          <div class="comic-img hidden">
+            <img src="assets/island.webp" id="comic">
+          </div>
+        </div>
+
+      </section>
+
+      <section id="team">
+
+        <div class="team-text hidden">
+          <h1>Meet the Researchers</h1>
+        </div>
+        
+        <div class="team-container hidden">
+          
+					<!--Column 1-->
+					<div class="column hidden">
+						<div class="card">
+							<div class="img-container">
+								<img src="assets/pics/p1.png">
+							</div>
+							<h3>Christ Mae Diaz</h3>
+							<div class="icons">
+								<a href="#">
+									<i class="fa-brands fa-facebook"></i>
+								</a>
+								<a href="#">
+									<i class="fa-brands fa-instagram"></i>
+								</a>
+								<a href="#">
+									<i class="fa-brands fa-twitter"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<!--Column 2-->
+					<div class="column hidden">
+						<div class="card">
+							<div class="img-container">
+								<img src="assets/pics/p2.png">
+							</div>
+							<h3>Erjohn Fernandez</h3>
+							<div class="icons">
+								<a href="#">
+									<i class="fa-brands fa-facebook"></i>
+								</a>
+								<a href="#">
+									<i class="fa-brands fa-instagram"></i>
+								</a>
+								<a href="#">
+									<i class="fa-brands fa-twitter"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<!--Column 3-->
+					<div class="column hidden">
+						<div class="card">
+							<div class="img-container">
+								<img src="assets/pics/p3.png">
+							</div>
+							<h3>JM Delgado</h3>
+							<div class="icons">
+								<a href="#">
+									<i class="fa-brands fa-facebook"></i>
+								</a>
+								<a href="#">
+									<i class="fa-brands fa-instagram"></i>
+								</a>
+								<a href="#">
+									<i class="fa-brands fa-twitter"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+					<!--Column 4-->
+					<div class="column hidden">
+						<div class="card">
+							<div class="img-container">
+								<img src="assets/pics/p4.png">
+							</div>
+							<h3>Veronica Lumahan</h3>
+							<div class="icons">
+								<a href="#">
+									<i class="fa-brands fa-facebook"></i>
+								</a>
+								<a href="#">
+									<i class="fa-brands fa-instagram"></i>
+								</a>
+								<a href="#">
+									<i class="fa-brands fa-twitter"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+      </section>
+
+      <section id="mission">
+
+        <div class="mission-container">
+          <div class="mission-text hidden">
+            <h1>Our Mission</h1>
+          </div>
+          <div class="mission-info hidden">
+            <p>At Himal-us, our mission is to celebrate and preserve the cultural legacy of Guimaras through the artistry of multimedia storytelling. We aspire to bridge the gap between tradition and technology, bringing to life the island's rich story in a visually captivating and accessible manner. Through our comics and digital exploration, we aim to not only entertain but also educate and inspire an appreciation for the cultural heritage of Guimaras. We strive to create an immersive experience that fosters a deeper connection between the audience and the enchanting story that define this unique Philippine gem.</p>
+          </div> 
+          <div class="mission-img hidden">
+            <img src="assets/mission.webp" id="mission-img">
+          </div>
+          <a href="comic.html"> <button class="hidden" id="read2">Read Now</button> </a>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <p>© 2023 EMC Group 4</p>
+    </footer>
+
+  </div>
+    
+  </body>
+
+  <script>
+
+window.onload = function () {
+  // Hide the loader when the entire page has finished loading
+  document.getElementById("loader").style.display = "none";
+};
+
+const imageVersion = 1; // Update this version number whenever you want to force a reload
+
+  // Dynamically set the image URL with the version number
+  const imageUrl = `/assets/intro.gif?v=${imageVersion}`;
+    
+function handleImageLoad() {
+  const backgroundImage = document.getElementById("background-image");
+
+  // Set the image URL dynamically with the version number
+  backgroundImage.src = imageUrl;
+
+  // Set the onload event dynamically for the image
+  backgroundImage.onload = function () {
+    setTimeout(function () {
+      hideVideo();
+      document.getElementById("loader").style.display = "none"; // Hide the loader when the GIF is loaded
+    }, 14500); // Adjust the duration (5000 milliseconds) based on your GIF loop time
+  };
+
+  // In case the image is already cached, manually trigger the onload event
+  if (backgroundImage.complete) {
+    backgroundImage.onload();
+  }
+}
+
+function hideVideo() {
+  const backgroundImage = document.getElementById("background-image");
+  const closeButton = document.getElementById("close-button");
+  const content = document.getElementById("content");
+
+  // Apply fade-out transition to the image and close button
+  backgroundImage.style.transition = "opacity 0.5s ease-in-out";
+  closeButton.style.transition = "opacity 0.5s ease-in-out";
+
+  // Hide the image and close button with fade-out effect
+  backgroundImage.style.opacity = 0;
+  closeButton.style.opacity = 0;
+
+  // Show the content with a delay
+  setTimeout(function () {
+    content.style.opacity = 1;
+  }, 500); // Adjust the delay as needed
+
+  // Allow overflow after video playback
+  document.body.style.overflow = "auto";
+
+  // Hide the image by setting display to 'none' after the animation
+  setTimeout(function () {
+    backgroundImage.style.display = "none";
+  }, 1000); // Adjust the delay to match your animation duration
+}
+    
+    //menu
+    let menuBox = document.getElementById("menuBox");
+          let menuIcon = document.getElementById("menuIcon");
+
+          menuIcon.onclick = function() {
+            menuBox.classList.toggle("openMenu");
+          }
+
+  </script>
+
+</html>

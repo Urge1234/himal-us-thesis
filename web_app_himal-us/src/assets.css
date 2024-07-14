@@ -1,0 +1,205 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+:root {
+  --text: #fef9ec;
+  --background: #070303;
+  --primary: #da9d6d;
+  --secondary: #83a35a;
+  --accent: #505673;
+}
+
+body {
+  background-color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+#menuIcon {
+  cursor: pointer;
+  z-index: 3;
+  position: fixed;
+  right: 10vh;
+  top: 5vh;
+}
+
+.menu {
+  --s: 35px; /* control the size */
+  --c: var(--text); /* the color */
+  
+  height: var(--s);
+  aspect-ratio: 1;
+  border: none;
+  padding: 0;
+  border-inline: calc(var(--s)/2) solid #0000; 
+  box-sizing: content-box;
+  --_g1: linear-gradient(var(--c) 20%,#0000 0 80%,var(--c) 0) 
+         no-repeat content-box border-box;
+  --_g2: radial-gradient(circle closest-side at 50% 12.5%,var(--c) 95%,#0000) 
+         repeat-y content-box border-box;
+  background: 
+    var(--_g2) left  var(--_p,0px) top,
+    var(--_g1) left  calc(var(--s)/10 + var(--_p,0px)) top,
+    var(--_g2) right var(--_p,0px) top,
+    var(--_g1) right calc(var(--s)/10 + var(--_p,0px)) top;
+  background-size: 
+    20% 80%,
+    40% 100%;
+  position: relative;
+  clip-path: inset(0 25%);
+  -webkit-mask: linear-gradient(90deg,#0000,#000 25% 75%,#0000);
+  cursor: pointer;
+  transition: 
+    background-position .3s var(--_s,.3s), 
+    clip-path 0s var(--_s,.6s);
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  appearance:none;
+}
+.menu:before,
+.menu:after {
+  content:"";
+  position: absolute;
+  border-radius: var(--s);
+  inset: 40% 0;
+  background: var(--c);
+  transition: transform .3s calc(.3s - var(--_s,.3s));
+}
+
+.menu:checked {
+  clip-path: inset(0);
+  --_p: calc(-1*var(--s));
+  --_s: 0s;
+}
+.menu:checked:before {
+  transform: rotate(45deg);
+}
+.menu:checked:after {
+  transform: rotate(-45deg);
+}
+.menu:focus-visible {
+  clip-path: none;
+  -webkit-mask: none;
+  border: none;
+  outline: 2px solid var(--c);
+  outline-offset: 5px;
+}
+
+.menuBox {
+  width: 0;
+  height: 0;
+  background: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom-left-radius: 100%;
+  transition: width 0.5s, height 0.5s, border-radius 0.5s;
+  z-index: 2;
+}
+
+.menuBox.openMenu {
+  width: 100%;
+  height: 100vh;
+  border-bottom-left-radius: 0;
+}
+
+.menuBox.openMenu ul li {
+  opacity: 1;
+  transform: translateY(0);
+  transition: transform 1s, opacity 1s;
+  transition-delay: 0.5s;
+}
+
+.menuBox ul li {
+  list-style: none;
+  margin: 20px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.menuBox ul li a {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--text);
+  font-family: 'Roboto';
+  font-size: 50px;
+  font-weight: 600;
+  position: relative;
+  text-shadow: 0 0 0 var(--background);
+  transition: text-shadow 0.5s, transform 0.5s;
+}
+
+.menuBox ul li a:hover {
+  text-shadow: -3px 3px 0 var(--secondary);
+  transform: translateY(-6px);
+}
+
+.menuBox ul li a::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--text);
+  position: absolute;
+  bottom: 19px;
+  right: -18px;
+  opacity: 0;
+  box-shadow: 0 0 0 var(--background);
+  transition: box-shadow 0.5s;
+}
+.menuBox ul li a:hover::after {
+  opacity: 1;
+  box-shadow: -2px 2px 0 var(--secondary);
+}
+
+.title {
+  font-size: 3em;
+  font-family: 'Poppins';
+  font-weight: bolder;
+  color: var(--background);
+  margin-bottom: 10vh;
+  margin-top: 10vh;
+  text-align: center;
+  border-bottom: 5px solid var(--accent);
+}
+
+.photoGallery {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 40px 20px 0 20px;
+}
+
+.photoGallery .column {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.photoGallery .column .photo {
+  display: flex;
+  flex-direction: column;
+  width: 32.5%;
+}
+
+.photoGallery .column .photo img {
+  width: 100%;
+  padding-bottom: 15px;
+  border-radius: 5px;
+}
+
